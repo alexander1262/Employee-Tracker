@@ -1,7 +1,6 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const PORT = process.env.PORT || 3001;
-const app = express();
 
 const db = mysql.createConnection(
   {
@@ -15,6 +14,49 @@ const db = mysql.createConnection(
   console.log(results);
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+const questions = [
+  {
+    type: 'list',
+    message: 'Choose an action from the list:',
+    name: 'start',
+    choices: [
+      'View all departments',
+      'View all employees',
+      'Add a department',
+      'Add a role',
+      'Add an employee',
+      'Update an employee role'
+    ]
+  }
+];
+
+inquire()
+
+function inquire() {
+  inquirer
+  .prompt(questions)
+    .then((answers) => {
+      switch (answers) {
+        case 'View all departments':
+          console.log('View all departments')
+          break;
+        case 'View all employees':
+          console.log('View all employees')
+          break;
+        case 'Add a department':
+          console.log('Add a department')
+          break;
+        case 'Add a role':
+          console.log('Add a role')
+          break;
+        case 'Add an employee':
+          console.log('Add an employee')
+          break;
+        case 'Update an employee role':
+          console.log('Update an employee role')
+          break;
+      }
+    })
+}
+
+
