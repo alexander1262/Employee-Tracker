@@ -69,7 +69,7 @@ function inquire() {
           addDepartment()
           break;
         case 'Add a role':
-          console.log('Add a role')
+          addRoles()
           break;
         case 'Add an employee':
           addEmployee()
@@ -103,7 +103,57 @@ function addDepartment() {
   inquirer
     .prompt(questionsThree)
     .then(answer => {
-      
+      let departmentName = {
+        department_name: answer.department
+      }
+      db.promise().query('INSERT INTO department SET ?', departmentName)
+        .then(() => {
+          console.log('successfully added department')
+        })
+    })
+}
+
+function departmentChoices() {
+  let newDepartmentChoices = [];
+  db.query('SELECT department_name FROM department', function (err, results) {
+    let newDepartmentChoices = results;
+    return newDepartmentChoices;
+  });
+  return newDepartmentChoices;
+}
+
+const questionsFour = [
+  {
+    type: 'input',
+    message: 'Input new role name:',
+    name: 'role'
+  },
+  {
+    type: 'input',
+    message: 'Input a salary:',
+    name: 'salary'
+  },
+  {
+    type: 'list',
+    message: 'Choose a department:',
+    name: 'departmentChoice',
+    choices: departmentChoices()
+  }
+];
+
+function addRoles() {
+  inquirer
+    .prompt(questionsFour)
+    .then(answer => {
+      let roleName = {
+        title: answer.role,
+        salary: answer.salary,
+        department_id: answer.departmentChoice,
+      }
+      db.promise().query('INSERT INTO roles SET ?', roleName)
+        .then(() => {
+          console.log('successfully added role')
+        })
     })
 }
 
@@ -114,7 +164,6 @@ function addEmployee() {
       let firstName = answers.first;
       let lastName = answers.last;
       db.promise().query('SELECT * FROM roles').then(response => {
-        // console.log(response[0])
         let roleChoices = response[0].map(({ id, title }) => ({
           name: title,
           value: id
@@ -134,8 +183,8 @@ function addEmployee() {
                 name: `${first_name} ${last_name}`,
                 value: id
               }))
-              console.log(managerChoices)
               managerChoices.unshift({name: 'none', value: null})
+              console.log(managerChoices)
               inquirer
               .prompt({
                 type: 'list',
