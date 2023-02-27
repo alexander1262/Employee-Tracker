@@ -60,7 +60,6 @@ function inquire() {
   inquirer
     .prompt(questions)
     .then((answers) => {
-      console.log(answers)
       switch (answers.start) {
         case 'View all departments':
           viewDepartments()
@@ -167,6 +166,10 @@ function updateEmployeeRole() {
             .then(response => {
               db.query('UPDATE employee SET role_id=? WHERE id=?', [response.roles, employeeId])
             })
+            .then(() => {
+              console.log('Successfully updated employee role')
+              inquire()
+            })
         })
       })
   })
@@ -215,6 +218,7 @@ function addRoles() {
         db.promise().query('INSERT INTO roles SET ?', roleName)
           .then(() => {
             console.log('successfully added role')
+            inquire()
           })
       })
   }
@@ -272,6 +276,9 @@ function addEmployee() {
                     .then(() => {
                       console.log('successfully added employee')
                     })
+                  .then(() => {
+                    inquire()
+                  })
                 })
             })
           })
@@ -299,6 +306,7 @@ function addDepartment() {
       db.promise().query('INSERT INTO department SET ?', departmentName)
         .then(() => {
           console.log('successfully added department')
+          inquire()
         })
     })
 }
@@ -329,6 +337,9 @@ function deleteDepartment() {
         removeDepartment(response.departmentDelete)
         console.log('Successfully deleted department')
       })
+      .then(() => {
+        inquire()
+      })
   })
 }
 // removeRoles function works the same as removeDepartment, promise query that is called at the end of the deleteRoles function
@@ -358,6 +369,9 @@ function deleteRoles() {
         removeRoles(response.roleDelete)
         console.log('Successfully deleted role')
       })
+      .then(() => {
+        inquire()
+      })
   })
 }
 // remove employee promise query that is called at the end of the following deleteEmployee function
@@ -386,6 +400,9 @@ function deleteEmployee() {
       .then(response => {
         removeEmployee(response.employeeDelete)
         console.log('Successfully deleted employee')
+      })
+      .then(() => {
+        inquire()
       })
   })
 }
