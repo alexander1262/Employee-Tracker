@@ -318,7 +318,6 @@ function removeDepartment(departmentId) {
 function deleteDepartment() {
   // mapped the response into dChoices with department_name and id to be displayed in the following inquirer prompt
   departmentChoices().then(response => {
-    console.log(response[0])
     const dChoices = response[0].map(({ id, department_name }) => ({
       name: department_name,
       value: id
@@ -350,7 +349,6 @@ function removeRoles(rolesId) {
 function deleteRoles() {
   roleChoices().then(response => {
     // mapped the response into rChoices with title and id to be displayed in the following inquirer prompt
-    console.log(response[0])
     const rChoices = response[0].map(({ id, title }) => ({
       name: title,
       value: id
@@ -382,7 +380,6 @@ function removeEmployee(employeeId) {
 function deleteEmployee() {
   // mapped the response into eChoices with first_name, last_name, and id to be displayed in the following inquirer prompt
   employeeChoices().then(response => {
-    console.log(response[0])
     const eChoices = response[0].map(({ id, first_name, last_name }) => ({
       name: `${first_name} ${last_name}`,
       value: id
