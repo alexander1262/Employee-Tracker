@@ -14,3 +14,8 @@ node index.js
 These options will appear after entering the above command:
 
 ![download (4)](https://user-images.githubusercontent.com/106128188/221744409-084db612-d66a-4def-8dd4-f4f333275398.png)
+
+The first 3 options that start with the word "View" will show a table of either the department, employee, or role:
+
+![download (5)](https://user-images.githubusercontent.com/106128188/221744761-94ed6935-d4e4-4df3-8bc9-c70614d9ae98.png)
+
