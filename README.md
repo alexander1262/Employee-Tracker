@@ -1,6 +1,15 @@
-# Employee-Tracker
+# Employee Tracker - Module 12 Challenge
 
-## Application:
+## Description
+
+A MySQL based application that allows the user a plethora of options such as the ability to add, view, or delete and employee, role, or department and the ability to view departments by budget.
+
+## Table of Contents
+  - [Application](#Application)
+  - [Usage](#Usage)
+  - [License](#License)
+
+## Application
 
 [Google Drive Video Walkthrough](https://drive.google.com/file/d/1JTsvtDUY6_dHqz8F_3TJKvsxF1XUpK60/view)
 
@@ -30,3 +39,9 @@ Upon completion of these a console log will tell you said options were successfu
 Deleting a department, role, or employee will give you a list of the available delete options:
 
 ![download (7)](https://user-images.githubusercontent.com/106128188/221745164-14400646-73e5-4029-9883-167c528d24ee.png)
+
+## License
+
+MIT
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
